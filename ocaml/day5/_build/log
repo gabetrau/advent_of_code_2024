@@ -1,9 +1,9 @@
 # dune exec day5
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
-# Shared cache location: /home/gabriel/.cache/dune/db
-# Workspace root: /home/gabriel/advent_of_code_2024/ocaml/day5
-# Auto-detected concurrency: 20
+# Shared cache location: /home/gabrielrau/.cache/dune/db
+# Workspace root: /home/gabrielrau/advent_of_code_2024/ocaml/day5
+# Auto-detected concurrency: 8
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -13,4 +13,4 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/gabriel/.opam/default/bin/ocamlc.opt -config > /tmp/dune_602b4e_output
+$ /home/gabrielrau/.opam/default/bin/ocamlc.opt -config > /tmp/dune_3836ee_output

@@ -36,12 +36,43 @@ let rec calc_answer rules updates total =
   | [] -> total
   | x :: tail -> calc_answer rules tail (total + check_update rules x)
 
+let correct_input rules input =
+  let rec compare criteria left right =
+    match criteria with
+    | [] -> 0
+    | hd :: _ when fst hd = left && snd hd = right -> -1
+    | hd :: _ when fst hd = right && snd hd = left -> 1
+    | _ :: tail -> compare tail left right
+  in
+  let sorted_input = List.sort (fun x y -> compare rules x y) input in
+  List.nth sorted_input (List.length sorted_input / 2)
+
+let check_update_p2 rules input =
+  let check_rule rule =
+    let left_num_in = List.find_index (fun i -> i = fst rule) input in
+    let right_num_in = List.find_index (fun i -> i = snd rule) input in
+    match left_num_in with
+    | None -> true
+    | Some l -> ( match right_num_in with None -> true | Some r -> l < r)
+  in
+  let fails = List.exists (fun r -> check_rule r = false) rules in
+  match fails with true -> correct_input rules input | false -> 0
+
+let rec calc_answer_p2 rules updates total =
+  match updates with
+  | [] -> total
+  | x :: tail -> calc_answer_p2 rules tail (total + check_update_p2 rules x)
+
 let () =
   let ic = open_in "input.txt" in
+  let ic2 = open_in "input_p2.txt" in
   let print_result part result = Printf.printf "%s: %d\n" part result in
   try
     let rules = read_rules ic [] in
     let updates = read_updates ic [] in
     print_result "part 1" (calc_answer rules updates 0);
+    let rules_p2 = read_rules ic2 [] in
+    let updates_p2 = read_updates ic2 [] in
+    print_result "part 2" (calc_answer_p2 rules_p2 updates_p2 0);
     close_in ic
   with Sys_error _ -> close_in_noerr ic
