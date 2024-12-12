@@ -1,0 +1,6 @@
+# dune init proj day10
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /home/gabriel/.cache/dune/db
+# Workspace root: /home/gabriel/advent_of_code_2024/ocaml/day10
+# Auto-detected concurrency: 20
